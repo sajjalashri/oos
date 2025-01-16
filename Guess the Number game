@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int guess, targetNumber;
+    int attempts = 0;
+    char playAgain;
+
+    // Initialize random number generator
+    srand(time(0));
+
+    do {
+        // Generate a random number between 1 and 100
+        targetNumber = rand() % 100 + 1;
+
+        printf("Welcome to the Guessing Game!\n");
+        printf("I have picked a number between 1 and 100.\n");
+
+        // Player's guesses
+        do {
+            printf("Enter your guess: ");
+            scanf("%d", &guess);
+            attempts++;
+
+            if (guess < targetNumber) {
+                printf("Too low! Try again.\n");
+            } else if (guess > targetNumber) {
+                printf("Too high! Try again.\n");
+            } else {
+                printf("Congratulations! You've guessed the number in %d attempts.\n", attempts);
+            }
+
+        } while (guess != targetNumber);
+
+        // Ask player if they want to play again
+        printf("Would you like to play again? (y/n): ");
+        scanf(" %c", &playAgain);  // Notice the space before %c to capture newline
+
+    } while (playAgain == 'y' || playAgain == 'Y');
+
+    printf("Thanks for playing! Goodbye!\n");
+    return 0;
+}
